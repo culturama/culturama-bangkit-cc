@@ -19,6 +19,9 @@ const User = sequelize.define(
     password: {
       type: DataTypes.STRING,
     },
+    token: {
+      type: DataTypes.STRING,
+    },
   },
   {
     timestamps: false,

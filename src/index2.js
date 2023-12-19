@@ -9,10 +9,10 @@ const init = async () => {
     host: "localhost",
   });
   server.ext("onRequest", myMiddleware);
-  //server.route(users_routes);
 
   const allRoutes = [users_routes, contents_routes];
-
+  //await server.register(require("hapi-auth-jwt2"));
+  //require("./auth/jwt.js")(server);
   // Daftarkan setiap rute di server
   allRoutes.forEach((route) => {
     server.route(route);
