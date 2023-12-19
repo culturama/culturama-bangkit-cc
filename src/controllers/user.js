@@ -2,26 +2,10 @@ const User = require("./../models/user");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const auth = require("../auth/auth");
+require("dotenv").config();
 //menampilkan semua data user-----------------------------------------------------------------------------------
 const getAllUsers = async (request, h) => {
   try {
-    const authHeader = request.headers.authorization;
-    if (!authHeader) {
-      return h.response({ error: "Unauthorized" }).code(401);
-    }
-
-    // Mendapatkan token dari header
-    const token = authHeader.split(" ")[1];
-
-    // Verifikasi token JWT
-    const decoded = jwt.verify(token, "kuncirahasia");
-
-    // Mendapatkan data user dari database
-    const user = await User.findByPk(decoded.id);
-
-    if (!user) {
-      return h.response({ error: "User not found" }).code(401);
-    }
     const users = await User.findAll();
     const response = h.response({
       status: "success",
@@ -99,6 +83,7 @@ const addUser = async (request, h) => {
   }
 };
 
+const secret = process.env.JWT_SECRET;
 const login = async (request, h) => {
   try {
     const { email, password } = request.payload;
@@ -118,7 +103,7 @@ const login = async (request, h) => {
     }
 
     // Hasil autentikasi sukses, buat token JWT
-    const token = jwt.sign({ id: user.id_user, name: user.name, email: user.email }, "kuncirahasia");
+    const token = jwt.sign({ id: user.id_user, name: user.name, email: user.email }, secret);
 
     const response = h.response({
       status: "success",
@@ -138,45 +123,5 @@ const login = async (request, h) => {
     return response;
   }
 };
-
-// JWT secret key
-// const secretKey = "10";
-// const login = async (request, h) => {
-//   try {
-//     const { email, password } = request.payload;
-
-//     // Find the user by username
-//     const user = await User.findOne({ where: { email } });
-
-//     if (!user) {
-//       return h.response({ error: "User not found" }).code(401);
-//     }
-
-//     // Compare hashed password
-//     const isValidPassword = await bcrypt.compare(password, user.password);
-
-//     if (!isValidPassword) {
-//       return h.response({ error: "Invalid credentials" }).code(401);
-//     }
-
-//     // Generate JWT token
-//     const token = jwt.sign({ userId: user.id, username: user.username }, secretKey);
-
-//     //const user1=
-
-//     // return { token };
-//     const response = h.response({
-//       status: "success",
-//       message: "Login successful",
-//       data: user,
-//       token,
-//     });
-//     response.code(200);
-//     return response;
-//   } catch (error) {
-//     console.error(error);
-//     return h.response({ error: "Internal Server Error" }).code(500);
-//   }
-// };
 
 module.exports = { getAllUsers, getUserById, addUser, login };

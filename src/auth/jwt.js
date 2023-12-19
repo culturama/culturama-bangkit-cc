@@ -1,10 +1,12 @@
 const User = require("../models/user");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+require("dotenv").config();
 
+const secret = process.env.JWT_SECRET;
 module.exports = (server) => {
   server.auth.strategy("jwt", "jwt", {
-    key: "10", // Ganti dengan kunci rahasia Anda yang sebenarnya
+    key: secret, // Ganti dengan kunci rahasia Anda yang sebenarnya
     validate: async (decoded, request, h) => {
       try {
         const user = await User.findByPk(decoded.id);

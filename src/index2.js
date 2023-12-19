@@ -11,8 +11,8 @@ const init = async () => {
   server.ext("onRequest", myMiddleware);
 
   const allRoutes = [users_routes, contents_routes];
-  //await server.register(require("hapi-auth-jwt2"));
-  //require("./auth/jwt.js")(server);
+  await server.register(require("hapi-auth-jwt2"));
+  require("./auth/jwt.js")(server);
   // Daftarkan setiap rute di server
   allRoutes.forEach((route) => {
     server.route(route);
