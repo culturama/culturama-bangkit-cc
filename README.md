@@ -6,7 +6,7 @@ Repository for cloud computing
 | Column     | Data Type | Constraints         |
 |----------|------|--------------|
 | id_user     | INT   | PRIMARY KEY, AUTO_INCREMENT      |
-| nama | VARCHAR(255)   | NOT NULL      |
+| name | VARCHAR(255)   | NOT NULL      |
 | email      | VARCHAR(255)   | NOT NULL     |
 | password      | VARCHAR(255)   | NOT NULL     |
 
