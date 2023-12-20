@@ -1,5 +1,5 @@
 const User = require("../models/user");
-const { getAllUsers, getUserById, addUser, login } = require("../controllers/user");
+const { getAllUsers, getUserById, addUser, login, refreshToken } = require("../controllers/user");
 const jwt = require("jsonwebtoken");
 const routes_users = [
   {
@@ -27,6 +27,11 @@ const routes_users = [
       auth: false,
     },
     handler: login,
+  },
+  {
+    method: "POST",
+    path: "/refresh-token",
+    handler: refreshToken,
   },
   {
     method: "GET",

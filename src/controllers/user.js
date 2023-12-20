@@ -103,16 +103,24 @@ const login = async (request, h) => {
     }
 
     // Hasil autentikasi sukses, buat token JWT
-    const token = jwt.sign({ id: user.id_user, name: user.name, email: user.email }, secret);
+    //const token = jwt.sign({ id: user.id_user, name: user.name, email: user.email }, secret);
 
-    const response = h.response({
-      status: "success",
-      message: "Login successful",
-      data: user,
-      token,
-    });
-    response.code(200);
-    return response;
+    const accessToken = user.generateAccessToken();
+    const refreshToken = user.generateRefreshToken();
+
+    // Simpan refresh token ke database
+    await user.update({ refreshToken });
+
+    return { accessToken, refreshToken };
+
+    // const response = h.response({
+    //   status: "success",
+    //   message: "Login successful",
+    //   //data: user,
+    //   token,
+    // });
+    // response.code(200);
+    // return response;
   } catch (error) {
     console.error(error);
     const response = h.response({
@@ -124,4 +132,26 @@ const login = async (request, h) => {
   }
 };
 
-module.exports = { getAllUsers, getUserById, addUser, login };
+const refreshToken = async (request, h) => {
+  const { refreshToken } = request.payload;
+
+  try {
+    const user = await User.findOne({ where: { refreshToken } });
+
+    if (!user) {
+      return h.response("Token penyegar tidak valid").code(401);
+    }
+
+    const tokens = generateTokens(user);
+
+    // Simpan refresh token baru ke database
+    await user.update({ refreshToken: tokens.refreshToken });
+
+    return tokens;
+  } catch (error) {
+    console.error(error);
+    return h.response("Terjadi kesalahan saat menyegarkan token").code(500);
+  }
+};
+
+module.exports = { getAllUsers, getUserById, addUser, login, refreshToken };

@@ -1,6 +1,7 @@
 // Definisikan model untuk tabel 'users'
 const { DataTypes } = require("sequelize");
 const sequelize = require("./../config/database_conf");
+const jwt = require("jsonwebtoken");
 
 const User = sequelize.define(
   "User",
@@ -12,6 +13,7 @@ const User = sequelize.define(
     },
     name: {
       type: DataTypes.STRING,
+      unique: true,
     },
     email: {
       type: DataTypes.STRING,
@@ -19,7 +21,7 @@ const User = sequelize.define(
     password: {
       type: DataTypes.STRING,
     },
-    token: {
+    refreshToken: {
       type: DataTypes.STRING,
     },
   },
@@ -27,6 +29,12 @@ const User = sequelize.define(
     timestamps: false,
   }
 );
+User.prototype.generateAccessToken = function () {
+  return jwt.sign({ id: this.id_user, name: this.name }, process.env.JWT_SECRET, { expiresIn: "15m" });
+};
 
+User.prototype.generateRefreshToken = function () {
+  return jwt.sign({ id: this.id_user, name: this.name }, process.env.JWT_SECRET);
+};
 // await sequelize.async(); // Sinkronkan model dengan tabel di database
 module.exports = User;
