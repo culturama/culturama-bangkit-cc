@@ -1,13 +1,14 @@
 const Hapi = require("@hapi/hapi");
-const users_routes = require("./routes/users.js");
-const contents_routes = require("./routes/contents.js");
-const myMiddleware = require("./middleware/logs.js");
+const users_routes = require("./src/routes/users.js");
+const contents_routes = require("./src/routes/contents.js");
+const myMiddleware = require("./src/middleware/logs.js");
 
-const init = async () => {
+const startServer = async () => {
   const server = Hapi.server({
-    port: 3000,
-    host: "localhost",
+    port: process.env.PORT || 5000, // Use the PORT environment variable or default to 5000
+    host: "0.0.0.0", // Listen on all available network interfaces
   });
+
   server.ext("onRequest", myMiddleware);
   server.route({
     method: "GET",
@@ -22,7 +23,7 @@ const init = async () => {
   const allRoutes = [users_routes, contents_routes];
   await server.register(require("hapi-auth-jwt2"));
   // Daftarkan setiap rute di server
-  require("./auth/jwt.js")(server);
+  require("./src/auth/jwt.js")(server);
   allRoutes.forEach((route) => {
     server.route(route);
   });
@@ -31,4 +32,4 @@ const init = async () => {
   console.log(`Server berjalan pada ${server.info.uri}`);
 };
 
-init();
+startServer();
