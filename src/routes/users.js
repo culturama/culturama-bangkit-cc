@@ -1,6 +1,5 @@
-const User = require("../models/user");
 const { getAllUsers, getUserById, addUser, login, refreshToken } = require("../controllers/user");
-const jwt = require("jsonwebtoken");
+
 const routes_users = [
   {
     method: "GET",
@@ -33,16 +32,16 @@ const routes_users = [
     path: "/refresh-token",
     handler: refreshToken,
   },
-  {
-    method: "GET",
-    path: "/",
-    options: {
-      auth: "jwt",
-    },
-    handler: async (request, h) => {
-      return "Welcome to homepage";
-    },
-  },
+  // {
+  //   method: "GET",
+  //   path: "/",
+  //   options: {
+  //     auth: "jwt",
+  //   },
+  //   handler: async (request, h) => {
+  //     return "Welcome to homepage";
+  //   },
+  // },
 ];
 
 module.exports = routes_users;
