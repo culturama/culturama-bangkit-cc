@@ -5,7 +5,7 @@ const myMiddleware = require("./src/middleware/logs.js");
 
 const startServer = async () => {
   const server = Hapi.server({
-    port: process.env.PORT || 8091, // Use the PORT environment variable or default to 5000
+    port: process.env.PORT || 8096, // Use the PORT environment variable or default to 5000
     host: "localhost", // Listen on all available network interfaces
   });
 
