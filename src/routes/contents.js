@@ -3,6 +3,9 @@ const routes_contents = [
   {
     method: "GET",
     path: "/contents",
+    options: {
+      auth: false,
+    },
     handler: getAllContents,
   },
   {

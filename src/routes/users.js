@@ -4,9 +4,6 @@ const routes_users = [
   {
     method: "GET",
     path: "/users",
-    options: {
-      auth: "jwt",
-    },
     handler: getAllUsers,
   },
   {
@@ -16,7 +13,10 @@ const routes_users = [
   },
   {
     method: "POST",
-    path: "/users",
+    path: "/register",
+    options: {
+      auth: false,
+    },
     handler: addUser,
   },
   {
@@ -30,18 +30,11 @@ const routes_users = [
   {
     method: "POST",
     path: "/refresh-token",
+    options: {
+      auth: "jwt",
+    },
     handler: refreshToken,
   },
-  // {
-  //   method: "GET",
-  //   path: "/",
-  //   options: {
-  //     auth: "jwt",
-  //   },
-  //   handler: async (request, h) => {
-  //     return "Welcome to homepage";
-  //   },
-  // },
 ];
 
 module.exports = routes_users;
