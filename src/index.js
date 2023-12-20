@@ -12,6 +12,9 @@ const init = async () => {
   server.route({
     method: "GET",
     path: "/",
+    options: {
+      auth: false,
+    },
     handler: (request, h) => {
       return "Hello World!";
     },
