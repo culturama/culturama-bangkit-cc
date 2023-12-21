@@ -2,7 +2,7 @@ const { getAllContents, getContentById } = require("../controllers/content");
 const routes_contents = [
   {
     method: "GET",
-    path: "/contents",
+    path: "/content",
     options: {
       auth: false,
     },
@@ -10,7 +10,7 @@ const routes_contents = [
   },
   {
     method: "GET",
-    path: "/contents/{id}",
+    path: "/content/{id}",
     handler: getContentById,
   },
 ];

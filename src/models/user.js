@@ -6,7 +6,7 @@ const jwt = require("jsonwebtoken");
 const User = sequelize.define(
   "User",
   {
-    id_user: {
+    User_Id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
@@ -30,11 +30,11 @@ const User = sequelize.define(
   }
 );
 User.prototype.generateAccessToken = function () {
-  return jwt.sign({ id: this.id_user, name: this.name }, process.env.JWT_SECRET, { expiresIn: "15m" });
+  return jwt.sign({ id: this.User_Id, name: this.name }, process.env.JWT_SECRET, { expiresIn: "15m" });
 };
 
 User.prototype.generateRefreshToken = function () {
-  return jwt.sign({ id: this.id_user, name: this.name }, process.env.JWT_SECRET);
+  return jwt.sign({ id: this.User_Id, name: this.name }, process.env.JWT_SECRET);
 };
 // await sequelize.async(); // Sinkronkan model dengan tabel di database
 module.exports = User;
