@@ -180,7 +180,6 @@ Repository for cloud computing
             "Unnamed1": "Nilai Unnamed1",
             "Unnamed2": "Nilai Unnamed2"
           }
-          }
         }
     
     * If filed:
@@ -218,7 +217,6 @@ Repository for cloud computing
                "Article_Name": "Contoh Artikel",
                "Description": "Ini adalah contoh deskripsi artikel. Artikel ini berisi informasi yang sangat menarik dan bermanfaat.",
                "Image_Link": "https://example.com/image.jpg"
-           },
           }
       ]
 
@@ -246,9 +244,6 @@ Repository for cloud computing
                "Article_Name": "Contoh Artikel",
                "Description": "Ini adalah contoh deskripsi artikel. Artikel ini berisi informasi yang sangat menarik dan bermanfaat.",
                "Image_Link": "https://example.com/image.jpg"
-           },
-          }
-          }
         }
     
     * If filed:
