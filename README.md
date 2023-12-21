@@ -11,7 +11,6 @@ Repository for cloud computing
 | password      | VARCHAR(255)   | NOT NULL     |
 
 ### Tabel Content
-# Table: Places
 
 | Column        | Type          | Description         |
 |---------------|---------------|-------------------|
