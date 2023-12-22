@@ -11,7 +11,6 @@ Repository for cloud computing
 | password      | VARCHAR(255)   | NOT NULL     |
 
 ### Tabel Content
-# Table: Places
 
 | Column        | Type          | Description         |
 |---------------|---------------|-------------------|
@@ -180,7 +179,6 @@ Repository for cloud computing
             "Unnamed1": "Nilai Unnamed1",
             "Unnamed2": "Nilai Unnamed2"
           }
-          }
         }
     
     * If filed:
@@ -190,6 +188,70 @@ Repository for cloud computing
         {
           "status":"filed"
           "message": " filed to get content"
+        }
+
+
+### Article
+#### Get All Article
+* Endpoint: /article
+* Method: GET
+* Request Headers:
+  * Authorization: Bearer <access_token>
+* Response:
+  * If successful:
+    * Status Code: 200
+    * JSON Response:
+      ```json
+      [
+         {
+            {          
+               "Article_id": 1,
+               "Article_Name": "Contoh Artikel",
+               "Description": "Ini adalah contoh deskripsi artikel. Artikel ini berisi informasi yang sangat menarik dan bermanfaat.",
+               "Image_Link": "https://example.com/image.jpg"
+           },
+          }
+       {
+           "Article_id": 1,
+               "Article_Name": "Contoh Artikel",
+               "Description": "Ini adalah contoh deskripsi artikel. Artikel ini berisi informasi yang sangat menarik dan bermanfaat.",
+               "Image_Link": "https://example.com/image.jpg"
+          }
+      ]
+
+#### Get Article By ID
+* Endpoint: /article/{id}
+* Method: GET
+* Request Headers:
+  * Authorization: Bearer <access_token>
+  * Response:
+  * If not found:
+      * Status Code: 404
+      * JSON Response:
+        ```json
+        {
+          "error": true,
+          "message": " Article not found"
+        }
+        
+    * If product exists:
+      * Status Code: 200
+      * JSON Response:
+        ```json
+        {
+          "Article_id": 1,
+               "Article_Name": "Contoh Artikel",
+               "Description": "Ini adalah contoh deskripsi artikel. Artikel ini berisi informasi yang sangat menarik dan bermanfaat.",
+               "Image_Link": "https://example.com/image.jpg"
+        }
+    
+    * If filed:
+      * Status Code: 500
+      * JSON Response:
+        ```json
+        {
+          "status":"filed"
+          "message": " filed to get article"
         }
 
       
