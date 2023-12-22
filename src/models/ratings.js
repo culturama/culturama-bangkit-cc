@@ -1,21 +1,24 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("./../config/database_conf");
-const Article = sequelize.define(
-  "Article",
+const Rating = sequelize.define(
+  "Rating",
   {
-    Article_Id: {
+    Rating_Id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
     },
-    Article_Name: {
+    Place_Id: {
+      type: DataTypes.INTEGER,
+    },
+    User_Id: {
+      type: DataTypes.INTEGER,
+    },
+    Category: {
       type: DataTypes.STRING,
     },
-    Description: {
-      type: DataTypes.TEXT,
-    },
-    Image_Link: {
-      type: DataTypes.STRING,
+    Place_Ratings: {
+      type: DataTypes.INTEGER,
     },
   },
   {
@@ -23,4 +26,4 @@ const Article = sequelize.define(
   }
 );
 
-module.exports = Article;
+module.exports = Rating;

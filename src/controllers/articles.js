@@ -33,7 +33,7 @@ const getArticleById = async (request, h) => {
     const response = h.response({
       status: "success",
       message: "Successfully get the article",
-      data: content,
+      data: article,
     });
     response.code(200);
     return response;

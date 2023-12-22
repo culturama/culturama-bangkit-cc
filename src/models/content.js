@@ -14,8 +14,14 @@ const Content = sequelize.define(
     Description: {
       type: DataTypes.TEXT,
     },
+    Category: {
+      type: DataTypes.STRING,
+    },
     City: {
       type: DataTypes.STRING,
+    },
+    Price: {
+      type: DataTypes.INTEGER,
     },
     Rating: {
       type: DataTypes.INTEGER,
