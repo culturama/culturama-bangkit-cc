@@ -2,19 +2,18 @@
 Repository for cloud computing
 
 ## Database Schema Culturama
-### Tabel User
+### Tabel Users
 | Column     | Data Type | Constraints         |
 |----------|------|--------------|
-| id_user     | INT   | PRIMARY KEY, AUTO_INCREMENT      |
+| User_Id     | INT   | PRIMARY KEY, AUTO_INCREMENT      |
 | name | VARCHAR(255)   | NOT NULL      |
 | email      | VARCHAR(255)   | NOT NULL     |
 | password      | VARCHAR(255)   | NOT NULL     |
 
-### Tabel Content
-
+### Tabel Contents
 | Column        | Type          | Description         |
 |---------------|---------------|-------------------|
-| Place_id      | INTEGER       | Primary key, auto-increment |
+| Place_Id      | INTEGER       | Primary key, auto-increment |
 | Place_Name    | STRING        | Name of the place |
 | Description   | TEXT          | Description of the place |
 | City          | STRING        | City where the place is located |
@@ -26,6 +25,25 @@ Repository for cloud computing
 | Image_Link    | STRING        | Link to the image of the place |
 | Unnamed1      | STRING        | Additional field (Unnamed1) |
 | Unnamed2      | STRING        | Additional field (Unnamed2) |
+
+
+### Table Articles
+| Column         | Type          | Options             |
+| -------------- | ------------- | ------------------- |
+| Article_Id     | INTEGER       | PRIMARY KEY, AUTO_INCREMENT |
+| Article_Name   | STRING        |      NULL               |
+| Description    | TEXT          |      NULL               |
+| Image_Link     | STRING        |      NULL               |
+
+### Table Ratings
+| Column          | Type          | Options             |
+| --------------- | ------------- | ------------------- |
+| Rating_Id       | INTEGER       | PRIMARY KEY, AUTO_INCREMENT |
+| Place_Id        | INTEGER       |  NULL                   |
+| User_Id         | INTEGER       |       NULL                |
+| Category        | STRING        |      NULL                 |
+| Place_Ratings   | INTEGER       |      NULL                 |
+
 
 
 
